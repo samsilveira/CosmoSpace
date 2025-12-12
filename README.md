@@ -4,7 +4,7 @@
 
 O **CosmoSpace** é uma aplicação web interativa desenvolvida para entusiastas da astronomia. O projeto consome dados reais da **NASA** para exibir a Imagem Astronômica do Dia (APOD) e galerias de missões espaciais, oferecendo uma experiência imersiva e responsiva.
 
-[cite_start]Este projeto foi desenvolvido como parte da **Atividade do Trainee 2025.2**[cite: 153].
+Este projeto foi desenvolvido como parte da **Atividade do Trainee 2025.2**.
 
 ---
 
@@ -37,10 +37,10 @@ O objetivo do CosmoSpace é conectar usuários ao vasto conteúdo disponibilizad
 
 ### Principais Recursos
 
-- [cite_start]**Hero Section Dinâmica:** Exibe a *Astronomy Picture of the Day* (APOD) atualizada diariamente via API da NASA[cite: 159, 171].
-- [cite_start]**Galeria Astronômica:** Uma página extra dedicada a explorar fotos de rovers em Marte e outras missões[cite: 176].
-- [cite_start]**Interatividade:** Animações sutis, loaders de requisição e feedback visual em formulários[cite: 174, 180].
-- [cite_start]**Back-end Funcional:** API própria para gerenciar o envio de mensagens de contato (GET/POST)[cite: 168].
+- **Hero Section Dinâmica:** Exibe a *Astronomy Picture of the Day* (APOD) atualizada diariamente via API da NASA.
+- **Galeria Astronômica:** Uma página extra dedicada a explorar fotos de rovers em Marte e outras missões.
+- **Interatividade:** Animações sutis, loaders de requisição e feedback visual em formulários.
+- **Back-end Funcional:** API própria para gerenciar o envio de mensagens de contato (GET/POST).
 
 ---
 
@@ -49,14 +49,14 @@ O objetivo do CosmoSpace é conectar usuários ao vasto conteúdo disponibilizad
 ### Front-end
 
 - [x] **Consumo de API Externa:** Integração com NASA APIs (APOD e Mars Rover).
-- [x] [cite_start]**Responsividade Total:** Layout adaptável para Mobile, Tablet e Desktop[cite: 173].
-- [x] [cite_start]**Theme Switcher:** Alternância entre Modo Claro e Escuro[cite: 177].
-- [x] [cite_start]**Validação de Formulário:** Verificação de campos obrigatórios no front-end antes do envio[cite: 175].
+- [x] **Responsividade Total:** Layout adaptável para Mobile, Tablet e Desktop.
+- [x] **Theme Switcher:** Alternância entre Modo Claro e Escuro.
+- [x] **Validação de Formulário:** Verificação de campos obrigatórios no front-end antes do envio.
 
 ### Back-end
 
-- [x] [cite_start]**Rota POST:** Recebimento e validação de dados do formulário de contato[cite: 168].
-- [x] [cite_start]**Rota GET:** Listagem de mensagens recebidas (armazenamento em memória)[cite: 168].
+- [x] **Rota POST:** Recebimento e validação de dados do formulário de contato.
+- [x] **Rota GET:** Listagem de mensagens recebidas (armazenamento em memória).
 
 ---
 
