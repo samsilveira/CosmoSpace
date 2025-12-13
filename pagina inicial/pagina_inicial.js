@@ -38,14 +38,46 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // O ID do botão é "btnenviar"
     const botaoEnviar = document.getElementById('btnenviar');
-
+    
     if (botaoEnviar) {
-        // Adiciona um Event Listener para o clique
-        botaoEnviar.addEventListener('click', function(evento) {
-            
-            // Exibe o alerta solicitado (em português)
-            alert("Formulário enviado com sucesso!");
+        botaoEnviar.addEventListener('click', async function(evento) {
+            evento.preventDefault(); // Impede recarregar a tela
+
+            const dados = {
+                nome: document.getElementById('nome').value,
+                email: document.getElementById('email').value,
+                mensagem: document.getElementById('mensagem').value
+            };
+
+            // Efeito visual de carregamento
+            const textoOriginal = botaoEnviar.innerText;
+            botaoEnviar.innerText = "Enviando...";
+            botaoEnviar.disabled = true;
+
+            try {
+                // Rota do seu BACKEND
+                const response = await fetch('http://localhost:3000/api/contact', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(dados)
+                });
+
+                const resultado = await response.json();
+
+                if (response.ok) {
+                    alert("Mensagem enviada com sucesso! 🚀");
+                    document.querySelector('form').reset();
+                } else {
+                    alert("Erro: " + (resultado.error || "Verifique os dados."));
+                }
+
+            } catch (erro) {
+                console.error(erro);
+                alert("Erro ao conectar com o servidor. O Backend está rodando?");
+            } finally {
+                botaoEnviar.innerText = textoOriginal;
+                botaoEnviar.disabled = false;
+            }
         });
     }
-    
 });
