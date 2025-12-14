@@ -46,7 +46,7 @@ O objetivo do CosmoSpace é conectar usuários ao vasto conteúdo disponibilizad
 
 O layout do projeto foi planejado inicialmente utilizando o **Figma**. Você pode visualizar o protótipo de alta fidelidade e o style guide no link abaixo:
 
-[**🔗 Acessar Protótipo no Figma**]([LINK_DO_SEU_FIGMA_AQUI](https://www.figma.com/site/5FtDqsKBfWHwfNiCef26yY/Untitled?node-id=0-1&t=iyLEl8AD0f3KzvNh-1))
+[**🔗 Acessar Protótipo no Figma**](https://www.figma.com/site/5FtDqsKBfWHwfNiCef26yY/Untitled?node-id=0-1&t=iyLEl8AD0f3KzvNh-1)
 
 ---
 
