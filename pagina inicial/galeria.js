@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', async function() {
     }
 
     // 2. GALERIA (Usando NASA Image and Video Library)
-    const sectionGaleria = document.querySelector('section');
+    const sectionGaleria = document.getElementById('galeria-grid');
     
     if (sectionGaleria) {
         sectionGaleria.innerHTML = '<p style="grid-column: 1/-1; text-align:center;">Carregando imagens de Marte...</p>';
@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', async function() {
 
             const data = await res.json();
             
-            const items = data.collection.items.slice(0, 6); 
+            const items = data.collection.items.slice(0, 8); 
 
             sectionGaleria.innerHTML = ''; 
 
