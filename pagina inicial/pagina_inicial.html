@@ -1,64 +1,79 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Página inicial</title>
+    <title>CosmoSpace</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="pagina_inicial.css">
 </head>
 <body>
     <header>
-        <div>
+        <div class="logo">
             CosmoSpace
-
         </div>
 
         <nav>
-            <a href="pagina_inicial.html"><button>Home</button></a> 
-            <a href="galeria.html"><button>Galeria</button></a>            
-            <a><button>Contato</button></a>
-            
+            <a href="pagina_inicial.html">Home</a> 
+            <a href="galeria.html">Galeria</a>            
+            <a href="#contato">Contato</a>
             <button id="botao" onClick="alternarTema()">Tema</button>
         </nav>
     </header>
 
     <main>
         <section id="secao_inicial">
-        <h1>Descubra nosso universo!</h1>
-        <h4>Imagens da nasa atualizadas em tempo real</h4>
-        <button>Ver mais</button>
+            <h1>Descubra o universo ao seu alcance</h1>
+            <h4>Imagens e fatos da Nasa atualizados em tempo real</h4>
+            <button id="ver-mais">VER MAIS</button>
         </section>
-    <section>
-        <h1>Explorando o universo</h1>
 
-        <div>Sistema solar</div>
-        <div>Buracos negros</div>
-        <div>Constelações</div>
+        <section id="conteudo">
+            <h1>Explorando o Universo</h1>
+            <div class="grid-cards">
+                <div class="card">
+                    <h3>Sistema Solar</h3>
+                    <p>Conheça os planetas e seus satélites</p>
+                </div>
+                
+                <div class="card">
+                    <h3>Buracos Negros</h3>
+                    <p>Tudo sobre os objetos mais enigmáticos do universo</p>
+                </div>
+                
+                <div class="card">
+                    <h3>Constelações</h3>
+                    <p>Aprenda sobre as constelações e suas histórias</p>
+                </div>
+            </div>
+        </section>
 
-    </section>
-    <section>
-        <h2>Contato</h2>
-        <form>
-            <label for="nome">Nome</label>
-            <input type="text" id="nome" name="nome" placeholder=" ">
-            <label for="email">Email</label>
-            <input type="text" id="email" name="email" placeholder=" "> 
-            <label for="mensagem">Mensagem</label>
-            <input type="mensagem" id="mensagem" name="mensagem" placeholder=" ">
-        </form>
-        
-        <button id="btnenviar">
-            Enviar
-        </button>
+        <section id="contato">
+            <h2>Contato</h2>
+            <form id="form-contato">
+                <label for="nome">Nome</label>
+                <input type="text" id="nome" name="nome" required>
+                
+                <label for="email">Email</label>
+                <input type="text" id="email" name="email" required> 
+                
+                <label for="mensagem">Mensagem</label>
+                <input type="mensagem" id="mensagem" name="mensagem" required>
+            </form>
+            
+            <button id="btnenviar">Enviar</button>
         </section>
     </main>
+
     <footer>
         Entre em contato conosco
         <a>Whatsapp</a>
         <a>Instagram</a>
-
     </footer>
-    <script src="pagina_inicial.js"></script>
 
+    <script src="pagina_inicial.js"></script>
 </body>
 </html>

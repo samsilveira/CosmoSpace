@@ -23,7 +23,6 @@ document.addEventListener('DOMContentLoaded', async function() {
 
     // 2. CARREGAR APOD (Com Thumbnail de Vídeo)
     const heroSection = document.getElementById('secao_inicial');
-    const titulo = document.querySelector('#secao_inicial h1');
     const subtitulo = document.querySelector('#secao_inicial h4');
     const botaoHero = document.querySelector('#secao_inicial button');
 
@@ -32,30 +31,24 @@ document.addEventListener('DOMContentLoaded', async function() {
             const res = await fetch(`https://api.nasa.gov/planetary/apod?api_key=${NASA_API_KEY}`);
             const data = await res.json();
             
-            if (titulo) titulo.innerText = data.title;
-            if (subtitulo) subtitulo.innerText = "Imagem Astronômica do Dia (NASA)";
+            // CORREÇÃO: O título da API agora vai no H4 (Subtítulo), abaixo do H1 fixo
+            if (subtitulo) subtitulo.innerText = data.title; 
 
+            // --- LÓGICA DE IMAGEM/VÍDEO ---
             if (data.media_type === 'image') {
-                // Se for imagem normal, usa ela
                 heroSection.style.backgroundImage = `url('${data.url}')`;
                 
             } else if (data.media_type === 'video') {
                 console.log("APOD é vídeo. Tentando pegar thumbnail...", data.url);
                 
-                // Tenta extrair o ID do vídeo do YouTube usando Regex
-                // Funciona para URLs com 'embed/', 'watch?v=' ou 'youtu.be/'
                 const youtubeMatch = data.url.match(/(?:embed\/|v=|\/)([\w-]{11})/);
 
                 if (youtubeMatch && youtubeMatch[1]) {
                     const videoId = youtubeMatch[1];
-                    // Monta a URL da thumbnail de alta qualidade
                     const thumbUrl = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
-                    
-                    // Aplica como fundo
                     heroSection.style.backgroundImage = `url('${thumbUrl}')`;
                 }
 
-                // Ajusta o botão para assistir
                 if (botaoHero) {
                     botaoHero.innerText = "Assistir Vídeo do Dia";
                     botaoHero.onclick = () => window.open(data.url, '_blank');
