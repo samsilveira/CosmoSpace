@@ -2,9 +2,9 @@
 
 > "Uma nova visão do universo todos os dias."
 
-O **CosmoSpace** é uma aplicação web interativa desenvolvida para entusiastas da astronomia. O projeto consome dados reais da **NASA** para exibir a Imagem Astronômica do Dia (APOD) e galerias de missões espaciais, oferecendo uma experiência imersiva e responsiva.
+O **CosmoSpace** é uma aplicação web interativa desenvolvida para entusiastas da astronomia. O projeto consome dados reais da **NASA** para exibir a Imagem Astronômica do Dia (APOD) e uma galeria dinâmica de imagens espaciais.
 
-Este projeto foi desenvolvido como parte da **Atividade do Trainee 2025.2**.
+Além do consumo de APIs externas, o projeto conta com um **Back-end próprio** para gerenciamento de mensagens de contato.
 
 ---
 
@@ -13,34 +13,40 @@ Este projeto foi desenvolvido como parte da **Atividade do Trainee 2025.2**.
 - [🌌 CosmoSpace — Explorando o Universo](#-cosmospace--explorando-o-universo)
   - [📋 Índice](#-índice)
   - [🔭 Sobre o Projeto](#-sobre-o-projeto)
-    - [Principais Recursos](#principais-recursos)
+    - [Destaques](#destaques)
+  - [🎨 Design \& Prototipagem](#-design--prototipagem)
   - [🚀 Funcionalidades](#-funcionalidades)
     - [Front-end](#front-end)
     - [Back-end](#back-end)
-  - [📄 Documentação Técnica](#-documentação-técnica)
-    - [User Stories](#user-stories)
-    - [Requisitos Funcionais](#requisitos-funcionais)
-  - [🏗 Arquitetura e Rotas](#-arquitetura-e-rotas)
-    - [Diagrama de Rotas (API Interna)](#diagrama-de-rotas-api-interna)
-    - [Estrutura de Pastas](#estrutura-de-pastas)
   - [💻 Tecnologias Utilizadas](#-tecnologias-utilizadas)
-  - [📦 Como Rodar o Projeto](#-como-rodar-o-projeto)
+  - [📡 APIs Integradas](#-apis-integradas)
+  - [📦 Como Executar o Projeto](#-como-executar-o-projeto)
     - [Pré-requisitos](#pré-requisitos)
-    - [Passo a Passo](#passo-a-passo)
+    - [Passo 1: Clonar o Repositório](#passo-1-clonar-o-repositório)
+    - [Passo 2: Configurar e Rodar o Back-end](#passo-2-configurar-e-rodar-o-back-end)
+    - [Passo 3: Rodar o Front-end](#passo-3-rodar-o-front-end)
+    - [⚠️ Configuração da API Key](#️-configuração-da-api-key)
+  - [🏗 Arquitetura Backend](#-arquitetura-backend)
   - [👨‍🚀 Autores](#-autores)
 
 ---
 
 ## 🔭 Sobre o Projeto
 
-O objetivo do CosmoSpace é conectar usuários ao vasto conteúdo disponibilizado publicamente pela NASA. O site apresenta uma interface moderna com alternância de temas (Claro/Escuro) e um sistema de contato integrado a um back-end próprio.
+O objetivo do CosmoSpace é conectar usuários ao vasto conteúdo disponibilizado publicamente pela NASA através de uma interface moderna e responsiva.
 
-### Principais Recursos
+### Destaques
 
-- **Hero Section Dinâmica:** Exibe a *Astronomy Picture of the Day* (APOD) atualizada diariamente via API da NASA.
-- **Galeria Astronômica:** Uma página extra dedicada a explorar fotos de rovers em Marte e outras missões.
-- **Interatividade:** Animações sutis, loaders de requisição e feedback visual em formulários.
-- **Back-end Funcional:** API própria para gerenciar o envio de mensagens de contato (GET/POST).
+- **Hero Section Inteligente:** Exibe a *Astronomy Picture of the Day* (APOD). Se for um vídeo (YouTube), o sistema extrai automaticamente a thumbnail de alta qualidade para usar como fundo.
+- **Galeria de Marte:** Integração com a *NASA Image and Video Library* para buscar fotos atualizadas de rovers e missões em Marte.
+- **Back-end Funcional:** API em Node.js para receber e armazenar mensagens de contato.
+- **UX/UI:** Modo Claro/Escuro persistente e feedback visual de carregamento.
+
+## 🎨 Design & Prototipagem
+
+O layout do projeto foi planejado inicialmente utilizando o **Figma**. Você pode visualizar o protótipo de alta fidelidade e o style guide no link abaixo:
+
+[**🔗 Acessar Protótipo no Figma**]([LINK_DO_SEU_FIGMA_AQUI](https://www.figma.com/site/5FtDqsKBfWHwfNiCef26yY/Untitled?node-id=0-1&t=iyLEl8AD0f3KzvNh-1))
 
 ---
 
@@ -48,120 +54,122 @@ O objetivo do CosmoSpace é conectar usuários ao vasto conteúdo disponibilizad
 
 ### Front-end
 
-- [x] **Consumo de API Externa:** Integração com NASA APIs (APOD e Mars Rover).
-- [x] **Responsividade Total:** Layout adaptável para Mobile, Tablet e Desktop.
-- [x] **Theme Switcher:** Alternância entre Modo Claro e Escuro.
-- [x] **Validação de Formulário:** Verificação de campos obrigatórios no front-end antes do envio.
+- [x] **APOD (Foto do Dia):** Exibição dinâmica de imagem ou vídeo do dia.
+- [x] **Galeria Infinita:** Busca de imagens reais de Marte via API pública.
+- [x] **Tema:** Alternância entre Modo Claro e Escuro (salvo no LocalStorage).
+- [x] **Validação:** Verificação de campos obrigatórios no formulário.
+- [x] **Design Responsivo:** Adaptável para Mobile, Tablet e Desktop.
 
 ### Back-end
 
-- [x] **Rota POST:** Recebimento e validação de dados do formulário de contato.
+- [x] **Rota POST:** Recebimento e validação de dados de contato.
 - [x] **Rota GET:** Listagem de mensagens recebidas (armazenamento em memória).
-
----
-
-## 📄 Documentação Técnica
-
-O mapeamento abaixo segue os padrões definidos nos requisitos do projeto.
-
-### User Stories
-
-| ID | Descrição | Dependência |
-| :--- | :--- | :--- |
-| **US01** | Como visitante, quero visualizar a "Imagem Astronômica do Dia" ao entrar, para ver conteúdo atualizado. | None |
-| **US02** | Como visitante, quero alternar entre modo claro e escuro, para ter conforto visual. | None |
-| **US03** | Como entusiasta, quero visualizar uma galeria de fotos (ex: Marte), para explorar detalhes do espaço. | US01 |
-| **US04** | Como usuário, quero enviar uma mensagem de contato para a equipe. | None |
-| **US05** | Como administrador, quero listar as mensagens recebidas. | US04 |
-
-### Requisitos Funcionais
-
-| ID | Nome RF | Descrição | Rastreio |
-| :--- | :--- | :--- | :--- |
-| **RF01** | Integração NASA | O sistema deve consumir a API da NASA para exibir imagem e descrição. | US01 |
-| **RF02** | Toggle de Tema | O sistema deve permitir a troca de temas (Light/Dark). | US02 |
-| **RF03** | Envio de Contato | O sistema deve processar o envio de formulário via método POST. | US04 |
-| **RF04** | Listagem de Dados | O sistema deve fornecer uma rota GET que retorne as mensagens salvas. | US05 |
-
----
-
-## 🏗 Arquitetura e Rotas
-
-### Diagrama de Rotas (API Interna)
-
-| Método | Endpoint | Descrição |
-| :--- | :--- | :--- |
-| `POST` | `/api/contact` | Recebe JSON `{nome, email, mensagem}` e salva os dados. |
-| `GET` | `/api/messages` | Retorna JSON com a lista de todas as mensagens recebidas. |
-
-### Estrutura de Pastas
-
-```bash
-CosmoSpace/
-├── backend/
-│   ├── src/
-│   │   ├── controllers/   # Lógica das rotas
-│   │   ├── routes/        # Definição dos endpoints
-│   │   └── server.js      # Entry point do servidor
-│   └── package.json
-├── frontend/
-│   ├── assets/            # Imagens e ícones
-│   ├── css/               # Estilos (global.css, themes.css)
-│   ├── js/                # Scripts (api.js, main.js)
-│   ├── index.html         # Página Principal (Hero)
-│   └── galeria.html       # Página Extra (Galeria)
-└── README.md
-```
+- [x] **CORS:** Configurado para aceitar requisições do front-end local.
 
 ---
 
 ## 💻 Tecnologias Utilizadas
 
-- **Front-end:** HTML5, CSS3 (Flexbox/Grid), JavaScript (ES6+).
+- **Front-end:** HTML5, CSS3 (Flexbox/Grid), JavaScript (Vanilla ES6+).
+- **Estilização:** Fonte *Orbitron* (Google Fonts), Variáveis CSS.
 - **Back-end:** Node.js, Express.
-- **APIs:** [NASA Open APIs](https://api.nasa.gov/).
 - **Ferramentas:** Git, VS Code.
 
 ---
 
-## 📦 Como Rodar o Projeto
+## 📡 APIs Integradas
+
+1. **NASA APOD (Astronomy Picture of the Day):**
+    - Usada na tela inicial.
+    - Requer API Key.
+2. **NASA Image and Video Library:**
+    - Usada na Galeria (`images-api.nasa.gov`).
+    - Não requer chave (Pública).
+3. **API Interna (Localhost):**
+    - Usada para o formulário de contato.
+
+---
+
+## 📦 Como Executar o Projeto
+
+Para rodar o projeto completo, você precisará de dois terminais (um para o servidor e outro para ver o site, ou apenas abrir o HTML).
 
 ### Pré-requisitos
 
-- Node.js instalado.
-- Git instalado.
+- **Node.js** instalado na máquina.
+- **Git** instalado.
 
-### Passo a Passo
+### Passo 1: Clonar o Repositório
 
-1. **Clone o repositório:**
+```bash
+git clone https://github.com/samsilveira/CosmoSpace.git
+cd CosmoSpace
+```
 
-    ```bash
-    git clone [https://github.com/seu-usuario/cosmospace.git](https://github.com/seu-usuario/cosmospace.git)
-    cd cosmospace
-    ```
+### Passo 2: Configurar e Rodar o Back-end
 
-2. **Configure o Back-end:**
+1. Entre na pasta do servidor:
 
-    ```bash
-    cd backend
-    npm install
-    npm start
-    # O servidor iniciará em http://localhost:3000
-    ```
+```bash
+cd backend
+```
 
-3. **Inicie o Front-end:**
+2. Instale as dependências:
 
-      - Abra a pasta `frontend` e execute o arquivo `index.html` no seu navegador (ou utilize a extensão "Live Server" do VS Code).
+```bash
+npm install
+```
+
+3. Inicie o servidor:
+
+```bash
+npm start
+
+```
+
+> O servidor iniciará em `http://localhost:3000`. Deixe este terminal aberto.
+
+### Passo 3: Rodar o Front-end
+
+1. Vá para a pasta raiz do projeto (onde estão os arquivos `.html`).
+
+2. Você pode abrir o arquivo `index.html` diretamente no navegador.
+
+- *Recomendação:* Se usar o VS Code, utilize a extensão **Live Server** para abrir o `pagina_inicial.html` ou `index.html`.
+
+### ⚠️ Configuração da API Key
+
+Para que a foto do dia (Home) apareça, você precisa de uma chave da NASA.
+
+1. Gere sua chave em [api.nasa.gov](https://api.nasa.gov/).
+2. Abra o arquivo `pagina_inicial.js`.
+3. Substitua a variável `NASA_API_KEY` pela sua chave:
+
+```javascript
+const NASA_API_KEY = 'SUA_CHAVE_AQUI';
+```
+
+---
+
+## 🏗 Arquitetura Backend
+
+O servidor backend segue uma estrutura MVC simplificada
+
+| Método | Endpoint | Função |
+| --- | --- | --- |
+| `POST` | `/api/contact` | Recebe JSON `{nome, email, mensagem}` e salva. |
+| `GET` | `/api/messages` | Retorna todas as mensagens salvas (JSON). |
+| `GET` | `/api/status` | Verifica se a API está online. |
 
 ---
 
 ## 👨‍🚀 Autores
 
-| Nome                  | GitHub |
-| :-------------------- | ------ |
-| Maria Antonia Trajano | <https://github.com/mariastrajano> |
-| Letícia Silva         | <https://github.com/leticia-software-engineer> |
-| Samuel Wagner         | <https://github.com/samsilveira> |
+| Nome | GitHub |
+| --- | --- |
+| **Maria Antonia Trajano** | [@mariastrajano](https://github.com/mariastrajano) |
+| **Letícia Silva** | [@leticia-software-engineer](https://github.com/leticia-software-engineer) |
+| **Samuel Wagner** | [@samsilveira](https://github.com/samsilveira) |
 
 ---
 
