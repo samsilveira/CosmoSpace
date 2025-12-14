@@ -1,56 +1,65 @@
-// A função alternarTema() é chamada pelo botão com onClick="alternarTema()"
-function alternarTema() {
-    // Seleciona o elemento principal <body> para a troca de tema
-    const corpoPagina = document.body;
-    
-    // Alterna a classe 'tema-claro' no <body>
-    // Esta classe é a que seu CSS espera para mudar as cores.
-    corpoPagina.classList.toggle('tema-claro');
+const NASA_API_KEY = 'A7pfiQ7URNE1mSWejwiks3R2hv0qiLpT6KdVGJvK';
 
-    // Persistência: salva a preferência do usuário no localStorage
-    const estaClaro = corpoPagina.classList.contains('tema-claro');
-    localStorage.setItem('preferenciaTema', estaClaro ? 'claro' : 'escuro');
-    
-    console.log("Tema alternado para: " + (estaClaro ? "CLARO" : "ESCURO"));
-}
-
-// Executa o código após o carregamento total do DOM
-document.addEventListener('DOMContentLoaded', function() {
-    
-    // --- 1. CARREGAR TEMA PERSISTENTE AO INICIAR ---
-    function carregarTema() {
-        const preferenciaSalva = localStorage.getItem('preferenciaTema');
-
-        // Se a preferência salva for 'claro', adiciona a classe tema-claro
-        if (preferenciaSalva === 'claro') {
-            document.body.classList.add('tema-claro');
-        }
-    }
-    carregarTema(); // Executa o carregamento do tema
-    
-    // Como esta é a página da Galeria, não há botão 'btnenviar' aqui.
-    
-    console.log("Funcionalidade do Tema carregada.");
-});
-
-// A função alternarTema() é chamada pelo botão com onClick="alternarTema()"
 function alternarTema() {
     const corpoPagina = document.body;
-    
     corpoPagina.classList.toggle('tema-claro');
-
     const estaClaro = corpoPagina.classList.contains('tema-claro');
     localStorage.setItem('preferenciaTema', estaClaro ? 'claro' : 'escuro');
 }
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', async function() {
     
-    function carregarTema() {
-        const preferenciaSalva = localStorage.getItem('preferenciaTema');
+    // 1. TEMA
+    const preferenciaSalva = localStorage.getItem('preferenciaTema');
+    if (preferenciaSalva === 'claro') {
+        document.body.classList.add('tema-claro');
+    }
 
-        if (preferenciaSalva === 'claro') {
-            document.body.classList.add('tema-claro');
+    // 2. GALERIA (Com proteção contra erros)
+    const sectionGaleria = document.querySelector('section');
+    
+    if (sectionGaleria) {
+        // Limpa e mostra Loading
+        sectionGaleria.innerHTML = '<p style="grid-column: 1/-1; text-align:center;">Carregando imagens de Marte...</p>';
+
+        try {
+            // Tenta buscar fotos do Rover Curiosity (Sol 1000)
+            const res = await fetch(`https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1000&page=1&api_key=${NASA_API_KEY}`);
+            
+            // VERIFICAÇÃO CRUCIAL: Se deu erro (404, 500, etc), para aqui.
+            if (!res.ok) {
+                throw new Error(`Erro na API da NASA: ${res.status}`); 
+            }
+
+            const data = await res.json();
+
+            // Verifica se existem fotos na resposta
+            if (!data.photos || data.photos.length === 0) {
+                throw new Error("Nenhuma foto encontrada para esta data.");
+            }
+            
+            // Pega as 6 primeiras
+            const fotos = data.photos.slice(0, 6);
+            sectionGaleria.innerHTML = ''; // Limpa o loading
+
+            fotos.forEach(foto => {
+                const card = document.createElement('div');
+                card.style.backgroundImage = `url('${foto.img_src}')`;
+                card.style.backgroundSize = 'cover';
+                card.style.backgroundPosition = 'center';
+                card.title = `Rover: ${foto.rover.name} | Data: ${foto.earth_date}`;
+                sectionGaleria.appendChild(card);
+            });
+
+        } catch (erro) {
+            console.error(erro);
+            // Mostra mensagem amigável na tela em vez de quebrar
+            sectionGaleria.innerHTML = `
+                <div style="grid-column: 1/-1; text-align:center; padding: 20px;">
+                    <p>⚠️ Não foi possível carregar as imagens agora.</p>
+                    <small style="opacity:0.7">Detalhe: ${erro.message}</small>
+                </div>
+            `;
         }
     }
-    carregarTema();
 });
